@@ -9,11 +9,11 @@
 ![license MIT](https://img.shields.io/badge/license-MIT-0B1F33)
 ![node >=18](https://img.shields.io/badge/node-%3E%3D18-C9A227?labelColor=0B1F33)
 ![release 1.00](https://img.shields.io/github/v/release/theworker02/receipt-md?display_name=release)
-[![npm](https://img.shields.io/npm/v/@magnexis/receipt-md.svg)](https://www.npmjs.com/package/@magnexis/receipt-md)
+[![npm](https://img.shields.io/npm/v/%40magnexis/receipt-md.svg)](https://www.npmjs.com/package/%40magnexis/receipt-md)
 
 Package version **1.00** (`1.0.0`). Default branch is **`main`** — never `master`.
 
-**Docs:** [GitHub Pages](https://theworker02.github.io/receipt-md/) · **Source:** [`theworker02/receipt-md`](https://github.com/theworker02/receipt-md) · **Release 1.00:** [`v1.0.0`](https://github.com/theworker02/receipt-md/releases/tag/v1.0.0) · **npm:** [`@magnexis/receipt-md`](https://www.npmjs.com/package/@magnexis/receipt-md)
+**Docs:** [GitHub Pages](https://theworker02.github.io/receipt-md/) · **Source:** [`theworker02/receipt-md`](https://github.com/theworker02/receipt-md) · **Release 1.00:** [`v1.0.0`](https://github.com/theworker02/receipt-md/releases/tag/v1.0.0) · **npm:** [`@magnexis/receipt-md`](https://www.npmjs.com/package/%40magnexis/receipt-md)
 
 ## Why it exists
 
@@ -30,11 +30,11 @@ Requires Node.js 18 or newer. No extra npm dependencies.
 ### Global install from npm
 
 ```bash
-npm install -g @magnexis/receipt-md
+npm i -g @magnexis/receipt-md
 receipt-md --help
 ```
 
-Package page: https://www.npmjs.com/package/@magnexis/receipt-md
+Package page: https://www.npmjs.com/package/%40magnexis/receipt-md
 
 ### Global install from GitHub
 
