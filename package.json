@@ -1,7 +1,7 @@
 {
   "name": "receipt-md",
   "version": "1.0.0",
-  "description": "Write a RECEIPT.md with title, timestamp, and pass/fail.",
+  "description": "Write a markdown receipt with a title, ISO timestamp, and PASS or FAIL from argv.",
   "bin": {
     "receipt-md": "./src/cli.js"
   },
@@ -12,5 +12,25 @@
   "license": "MIT",
   "engines": {
     "node": ">=18"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theworker02/receipt-md.git"
+  },
+  "homepage": "https://theworker02.github.io/receipt-md/",
+  "bugs": {
+    "url": "https://github.com/theworker02/receipt-md/issues"
+  },
+  "files": [
+    "src",
+    "docs",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "receipt",
+    "markdown",
+    "ci",
+    "cli"
+  ]
 }

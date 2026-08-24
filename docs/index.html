@@ -3,29 +3,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>receipt-md 1.00</title>
+  <title>receipt-md  · 1.00</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <div class="wrap brand">
-      <img src="logo.svg" alt="receipt-md mark">
-      <div>
-        <h1>receipt-md</h1>
-        <p class="tag">Markdown run receipts · version 1.00</p>
+  <nav class="nav sans">
+    <a class="brand-lockup" href="index.html"><img src="logo.svg" alt=""> receipt-md</a>
+    <div class="links">
+      <a href="index.html#overview">Overview</a>
+      <a href="index.html#install">Install</a>
+      <a href="usage.html">Usage</a>
+      <a href="index.html#examples">Examples</a>
+    </div>
+  </nav>
+  
+  <header class="hero">
+    <img src="logo.svg" alt="receipt-md mark">
+    <div>
+      <p class="kicker sans">theworker02 · version 1.00</p>
+      <h1>receipt-md</h1>
+      <p class="lede">Write a markdown receipt with a title, ISO timestamp, and PASS or FAIL from argv.</p>
+      <div class="badges sans">
+        <span class="badge">1.00 / 1.0.0</span>
+        <span class="badge">branch main</span>
+        <span class="badge">MIT</span>
+        <span class="badge">Node.js >= 18</span>
       </div>
     </div>
   </header>
-  <main class="wrap">
-    <section class="card">
-      <h2>Purpose</h2>
-      <p>Write RECEIPT.md with a title, ISO timestamp, and pass/fail taken from argv.</p>
-      <h2>Install</h2>
-      <pre><code>npm install -g receipt-md</code></pre>
-      <h2>Usage</h2>
-      <pre><code>receipt-md CI pass</code></pre>
+  <div class="wrap">
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>CI logs disappear. A RECEIPT.md in the workspace is a durable, human-readable proof of the last run.</p>
+      <p>Workshop graders, local CI wrappers, and anyone attaching a result file to an artifact folder.</p>
     </section>
-    <footer>MIT © 2026 theworker02 · version 1.00 (1.0.0) · navy #0B1F33 · gold #C9A227</footer>
-  </main>
+    <section id="install">
+      <h2>Install</h2>
+      <p>Install globally from Git, or run with Node from a clone. There are no extra dependencies.</p>
+      <pre><code>npm install -g git+https://github.com/theworker02/receipt-md.git
+receipt-md --help
+node src/cli.js --help</code></pre>
+    </section>
+    <section id="usage">
+      <h2>Usage</h2>
+      <p>Synopsis: <code>receipt-md [options] &lt;title&gt; &lt;pass|fail&gt; [file]</code></p>
+      <p>See the <a href="usage.html">full CLI reference</a> for every flag, exit code, and example.</p>
+      <pre><code>receipt-md 1.00 (1.0.0)
+
+Usage:
+  receipt-md &lt;title&gt; &lt;pass|fail&gt; [file]
+  receipt-md --help
+  receipt-md --version
+
+Writes markdown:
+  # &lt;title&gt;
+  - timestamp: &lt;ISO&gt;
+  - result: PASS|FAIL
+
+Default file: ./RECEIPT.md
+Exit 0 on PASS, 1 on FAIL (file is still written).
+
+Options:
+  -h, --help       Show this help
+  -v, --version    Print 1.0.0
+
+Examples:
+  receipt-md "CI" pass
+  receipt-md "e2e" fail ./artifacts/RECEIPT.md</code></pre>
+    </section>
+    <section id="examples">
+      <h2>Examples</h2>
+      <div class="grid-2">
+        <div>
+          <h3 class="ok">Success</h3>
+          <pre><code>receipt-md "nightly" pass</code></pre><pre><code># nightly
+
+- timestamp: 2026-08-23T16:00:00.000Z
+- result: PASS</code></pre>
+        </div>
+        <div>
+          <h3 class="fail">Failure</h3>
+          <pre><code>receipt-md "nightly" fail ; echo exit:$?</code></pre><p>The file is still written with result FAIL. Exit code is 1.</p><p>Missing title:</p><pre><code>receipt-md
+usage: receipt-md &lt;title&gt; &lt;pass|fail&gt; [file]</code></pre>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="sans">
+    MIT © 2026 theworker02 · version <strong>1.00</strong> (<code>1.0.0</code>) ·
+    navy <code>#0B1F33</code> · gold <code>#C9A227</code> ·
+    <a href="https://github.com/theworker02/receipt-md">GitHub</a> ·
+    <a href="https://thanks.dev/u/gh/theworker02">thanks.dev</a>
+  </footer>
 </body>
 </html>

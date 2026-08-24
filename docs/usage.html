@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>receipt-md usage · 1.00</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav sans">
+    <a class="brand-lockup" href="index.html"><img src="logo.svg" alt=""> receipt-md</a>
+    <div class="links">
+      <a href="index.html#overview">Overview</a>
+      <a href="index.html#install">Install</a>
+      <a href="usage.html">Usage</a>
+      <a href="index.html#examples">Examples</a>
+    </div>
+  </nav>
+  
+  <header class="hero">
+    <img src="logo.svg" alt="receipt-md mark">
+    <div>
+      <p class="kicker sans">CLI reference · 1.00</p>
+      <h1>receipt-md</h1>
+      <p class="lede">Every flag, subcommand, and exit code. Same examples as the README.</p>
+    </div>
+  </header>
+  <div class="wrap">
+    <section>
+      <h2>Synopsis</h2>
+      <pre><code>receipt-md [options] &lt;title&gt; &lt;pass|fail&gt; [file]</code></pre>
+      <div class="callout sans"><strong>Tip:</strong> <code>receipt-md --help</code> prints this text in the terminal. <code>receipt-md --version</code> prints <code>1.0.0</code>.</div>
+    </section>
+    <section>
+      <h2>Flags and arguments</h2>
+      <table class="sans"><thead><tr><th>Flag / argument</th><th>Meaning</th></tr></thead><tbody><tr><td><code>-h, --help</code></td><td>Print detailed usage and exit 0.</td></tr><tr><td><code>-v, --version</code></td><td>Print 1.0.0 and exit 0.</td></tr><tr><td><code>&lt;title&gt;</code></td><td>Heading written as # title.</td></tr><tr><td><code>&lt;pass|fail&gt;</code></td><td>pass/ok/true/1 → PASS; fail/false/0 → FAIL.</td></tr><tr><td><code>[file]</code></td><td>Output path. Default: ./RECEIPT.md</td></tr></tbody></table>
+    </section>
+    <section>
+      <h2>Exit codes</h2>
+      <table class="sans"><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0</code></td><td>Receipt written and result is PASS.</td></tr><tr><td><code>1</code></td><td>Bad usage, or receipt written as FAIL.</td></tr></tbody></table>
+    </section>
+    <section>
+      <h2>Configuration</h2>
+      <p>No configuration file. The process exit code matches the receipt: 0 for PASS, 1 for FAIL (after the file is written).</p>
+    </section>
+    <section id="examples">
+      <h2>Worked examples</h2>
+      <h3 class="ok">Success path</h3>
+      <pre><code>receipt-md "nightly" pass</code></pre><pre><code># nightly
+
+- timestamp: 2026-08-23T16:00:00.000Z
+- result: PASS</code></pre>
+      <h3 class="fail">Failure path</h3>
+      <pre><code>receipt-md "nightly" fail ; echo exit:$?</code></pre><p>The file is still written with result FAIL. Exit code is 1.</p><p>Missing title:</p><pre><code>receipt-md
+usage: receipt-md &lt;title&gt; &lt;pass|fail&gt; [file]</code></pre>
+    </section>
+  </div>
+  <footer class="sans">
+    MIT © 2026 theworker02 · version <strong>1.00</strong> (<code>1.0.0</code>) ·
+    navy <code>#0B1F33</code> · gold <code>#C9A227</code> ·
+    <a href="https://github.com/theworker02/receipt-md">GitHub</a> ·
+    <a href="https://thanks.dev/u/gh/theworker02">thanks.dev</a>
+  </footer>
+</body>
+</html>

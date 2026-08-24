@@ -1,7 +1,18 @@
 #!/usr/bin/env node
 const { writeReceipt } = require("./index.js");
+const { HELP, VERSION } = require("./help.js");
 
-const [title, result, dest] = process.argv.slice(2);
+const args = process.argv.slice(2);
+if (args.includes("-h") || args.includes("--help")) {
+  process.stdout.write(HELP);
+  process.exit(0);
+}
+if (args.includes("-v") || args.includes("--version")) {
+  process.stdout.write(`${VERSION}\n`);
+  process.exit(0);
+}
+
+const [title, result, dest] = args.filter((a) => !a.startsWith("-"));
 if (!title || !result) {
   process.stderr.write("usage: receipt-md <title> <pass|fail> [file]\n");
   process.exit(1);
