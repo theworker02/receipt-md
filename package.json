@@ -1,9 +1,9 @@
 {
-  "name": "receipt-md",
+  "name": "@magnexis/receipt-md",
   "version": "1.0.0",
   "description": "Write a markdown receipt with a title, ISO timestamp, and PASS or FAIL from argv.",
   "bin": {
-    "receipt-md": "./src/cli.js"
+    "receipt-md": "src/cli.js"
   },
   "main": "./src/index.js",
   "scripts": {
@@ -32,5 +32,8 @@
     "markdown",
     "ci",
     "cli"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
