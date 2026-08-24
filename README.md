@@ -57,25 +57,45 @@ cat RECEIPT.md
 
 ## CLI reference
 
-Synopsis:
-
 ```text
-receipt-md [options] <title> <pass|fail> [file]
-```
+receipt-md 1.00 (1.0.0)
 
-| Flag / argument | Meaning |
-| --- | --- |
-| `-h, --help` | Print detailed usage and exit 0. |
-| `-v, --version` | Print 1.0.0 and exit 0. |
-| `<title>` | Heading written as # title. |
-| `<pass|fail>` | pass/ok/true/1 → PASS; fail/false/0 → FAIL. |
-| `[file]` | Output path. Default: ./RECEIPT.md |
+Usage:
+  receipt-md [options] <title> <pass|fail> [file]
+  receipt-md --title <title> --pass|--fail [--note text] [--out file]
+
+Write a markdown receipt:
+  # <title>
+  - timestamp: <ISO>
+  - result: PASS|FAIL
+  - note: ...   (optional, repeatable)
+
+Default file: ./RECEIPT.md
+Exit 0 on PASS, 1 on FAIL (the file is still written).
+
+Options:
+  -h, --help         Show this help and exit 0
+  -V, -v, --version  Print 1.0.0 and exit 0
+  --title <text>     Receipt title
+  --pass / --fail    Result (aliases: pass|ok|true|1 and fail|false|0)
+  --note <text>      Extra note line (repeatable)
+  --out <file>       Output markdown path
+  --json             Also write a JSON sidecar next to the markdown
+                     (and print JSON to stdout)
+
+Examples:
+  receipt-md "CI" pass
+  receipt-md --title e2e --fail --note "timeout" --out ./artifacts/RECEIPT.md
+  receipt-md "build" pass --json
+```
 
 Print the same text locally:
 
 ```bash
 receipt-md --help
+receipt-md -h
 receipt-md --version
+receipt-md -V
 ```
 
 Expected version output:
@@ -86,44 +106,42 @@ Expected version output:
 
 ## Configuration
 
-No configuration file. The process exit code matches the receipt: 0 for PASS, 1 for FAIL (after the file is written).
+Default file is `./RECEIPT.md`. `--json` also writes a JSON sidecar.
 
 ## Exit codes
 
 | Code | Meaning |
 | --- | --- |
-| `0` | Receipt written and result is PASS. |
-| `1` | Bad usage, or receipt written as FAIL. |
+| `0` | PASS receipt written. |
+| `1` | FAIL receipt written, or usage error. The markdown is still written on FAIL. |
 
 ## Examples
 
 ### Success path
 
+Write a PASS receipt.
+
 ```bash
-receipt-md "nightly" pass
+receipt-md "CI" pass
 ```
 
-```markdown
-# nightly
-
-- timestamp: 2026-08-23T16:00:00.000Z
-- result: PASS
+```text
+/abs/RECEIPT.md
 ```
 
 ### Failure path
 
-```bash
-receipt-md "nightly" fail ; echo exit:$?
-```
-
-The file is still written with result FAIL. Exit code is 1.
-
-Missing title:
+FAIL receipts are still written; the process exits 1.
 
 ```bash
-receipt-md
-usage: receipt-md <title> <pass|fail> [file]
+receipt-md --title e2e --fail --note timeout --out ./artifacts/RECEIPT.md
 ```
+
+```text
+./artifacts/RECEIPT.md
+```
+
+Exit code is 1.
 
 ## How to run tests
 

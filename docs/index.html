@@ -42,9 +42,35 @@
     <section id="install">
       <h2>Install</h2>
       <p>Install globally from Git, or run with Node from a clone. There are no extra dependencies.</p>
-      <pre><code>npm install -g git+https://github.com/theworker02/receipt-md.git
-receipt-md --help
-node src/cli.js --help</code></pre>
+      <pre><code>receipt-md 1.00 (1.0.0)
+
+Usage:
+  receipt-md [options] &lt;title&gt; &lt;pass|fail&gt; [file]
+  receipt-md --title &lt;title&gt; --pass|--fail [--note text] [--out file]
+
+Write a markdown receipt:
+  # &lt;title&gt;
+  - timestamp: &lt;ISO&gt;
+  - result: PASS|FAIL
+  - note: ...   (optional, repeatable)
+
+Default file: ./RECEIPT.md
+Exit 0 on PASS, 1 on FAIL (the file is still written).
+
+Options:
+  -h, --help         Show this help and exit 0
+  -V, -v, --version  Print 1.0.0 and exit 0
+  --title &lt;text&gt;     Receipt title
+  --pass / --fail    Result (aliases: pass|ok|true|1 and fail|false|0)
+  --note &lt;text&gt;      Extra note line (repeatable)
+  --out &lt;file&gt;       Output markdown path
+  --json             Also write a JSON sidecar next to the markdown
+                     (and print JSON to stdout)
+
+Examples:
+  receipt-md "CI" pass
+  receipt-md --title e2e --fail --note "timeout" --out ./artifacts/RECEIPT.md
+  receipt-md "build" pass --json</code></pre>
     </section>
     <section id="usage">
       <h2>Usage</h2>
@@ -78,15 +104,11 @@ Examples:
       <div class="grid-2">
         <div>
           <h3 class="ok">Success</h3>
-          <pre><code>receipt-md "nightly" pass</code></pre><pre><code># nightly
-
-- timestamp: 2026-08-23T16:00:00.000Z
-- result: PASS</code></pre>
+          <p>Write a PASS receipt.</p><pre><code>receipt-md "CI" pass</code></pre><pre><code>/abs/RECEIPT.md</code></pre>
         </div>
         <div>
           <h3 class="fail">Failure</h3>
-          <pre><code>receipt-md "nightly" fail ; echo exit:$?</code></pre><p>The file is still written with result FAIL. Exit code is 1.</p><p>Missing title:</p><pre><code>receipt-md
-usage: receipt-md &lt;title&gt; &lt;pass|fail&gt; [file]</code></pre>
+          <p>FAIL receipts are still written; the process exits 1.</p><pre><code>receipt-md --title e2e --fail --note timeout --out ./artifacts/RECEIPT.md</code></pre><pre><code>./artifacts/RECEIPT.md</code></pre><p>Exit code is 1.</p>
         </div>
       </div>
     </section>

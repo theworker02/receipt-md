@@ -30,31 +30,55 @@
   <div class="wrap">
     <section>
       <h2>Synopsis</h2>
-      <pre><code>receipt-md [options] &lt;title&gt; &lt;pass|fail&gt; [file]</code></pre>
-      <div class="callout sans"><strong>Tip:</strong> <code>receipt-md --help</code> prints this text in the terminal. <code>receipt-md --version</code> prints <code>1.0.0</code>.</div>
+      <pre><code>receipt-md 1.00 (1.0.0)
+
+Usage:
+  receipt-md [options] &lt;title&gt; &lt;pass|fail&gt; [file]
+  receipt-md --title &lt;title&gt; --pass|--fail [--note text] [--out file]
+
+Write a markdown receipt:
+  # &lt;title&gt;
+  - timestamp: &lt;ISO&gt;
+  - result: PASS|FAIL
+  - note: ...   (optional, repeatable)
+
+Default file: ./RECEIPT.md
+Exit 0 on PASS, 1 on FAIL (the file is still written).
+
+Options:
+  -h, --help         Show this help and exit 0
+  -V, -v, --version  Print 1.0.0 and exit 0
+  --title &lt;text&gt;     Receipt title
+  --pass / --fail    Result (aliases: pass|ok|true|1 and fail|false|0)
+  --note &lt;text&gt;      Extra note line (repeatable)
+  --out &lt;file&gt;       Output markdown path
+  --json             Also write a JSON sidecar next to the markdown
+                     (and print JSON to stdout)
+
+Examples:
+  receipt-md "CI" pass
+  receipt-md --title e2e --fail --note "timeout" --out ./artifacts/RECEIPT.md
+  receipt-md "build" pass --json</code></pre>
+      <div class="callout sans"><strong>Tip:</strong> <code>receipt-md --help</code> and <code>-h</code> print this text. <code>receipt-md --version</code> and <code>-V</code> print <code>1.0.0</code>.</div>
     </section>
     <section>
       <h2>Flags and arguments</h2>
-      <table class="sans"><thead><tr><th>Flag / argument</th><th>Meaning</th></tr></thead><tbody><tr><td><code>-h, --help</code></td><td>Print detailed usage and exit 0.</td></tr><tr><td><code>-v, --version</code></td><td>Print 1.0.0 and exit 0.</td></tr><tr><td><code>&lt;title&gt;</code></td><td>Heading written as # title.</td></tr><tr><td><code>&lt;pass|fail&gt;</code></td><td>pass/ok/true/1 → PASS; fail/false/0 → FAIL.</td></tr><tr><td><code>[file]</code></td><td>Output path. Default: ./RECEIPT.md</td></tr></tbody></table>
+      <p>The complete flag list is in <code>receipt-md --help</code> (shown above). Human output is the default; pass <code>--json</code> where supported.</p>
     </section>
     <section>
       <h2>Exit codes</h2>
-      <table class="sans"><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0</code></td><td>Receipt written and result is PASS.</td></tr><tr><td><code>1</code></td><td>Bad usage, or receipt written as FAIL.</td></tr></tbody></table>
+      <table class="sans"><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0</code></td><td>PASS receipt written.</td></tr><tr><td><code>1</code></td><td>FAIL receipt written, or usage error. The markdown is still written on FAIL.</td></tr></tbody></table>
     </section>
     <section>
       <h2>Configuration</h2>
-      <p>No configuration file. The process exit code matches the receipt: 0 for PASS, 1 for FAIL (after the file is written).</p>
+      <p>Default file is `./RECEIPT.md`. `--json` also writes a JSON sidecar.</p>
     </section>
     <section id="examples">
       <h2>Worked examples</h2>
       <h3 class="ok">Success path</h3>
-      <pre><code>receipt-md "nightly" pass</code></pre><pre><code># nightly
-
-- timestamp: 2026-08-23T16:00:00.000Z
-- result: PASS</code></pre>
+      <p>Write a PASS receipt.</p><pre><code>receipt-md "CI" pass</code></pre><pre><code>/abs/RECEIPT.md</code></pre>
       <h3 class="fail">Failure path</h3>
-      <pre><code>receipt-md "nightly" fail ; echo exit:$?</code></pre><p>The file is still written with result FAIL. Exit code is 1.</p><p>Missing title:</p><pre><code>receipt-md
-usage: receipt-md &lt;title&gt; &lt;pass|fail&gt; [file]</code></pre>
+      <p>FAIL receipts are still written; the process exits 1.</p><pre><code>receipt-md --title e2e --fail --note timeout --out ./artifacts/RECEIPT.md</code></pre><pre><code>./artifacts/RECEIPT.md</code></pre><p>Exit code is 1.</p>
     </section>
   </div>
   <footer class="sans">
