@@ -1,6 +1,6 @@
 # receipt-md
 
-<img src="docs/logo.svg" alt="receipt-md mark" width="88" height="88">
+<img src="docs/logo.svg" alt="receipt-md mark" width="96" height="96">
 
 **Write a markdown receipt with a title, ISO timestamp, and PASS or FAIL from argv.**
 
@@ -11,6 +11,8 @@
 ![release 1.00](https://img.shields.io/github/v/release/theworker02/receipt-md?display_name=release)
 
 Package version **1.00** (`1.0.0`). Default branch is **`main`** — never `master`.
+
+**Docs:** [GitHub Pages](https://theworker02.github.io/receipt-md/) · **Source:** [`theworker02/receipt-md`](https://github.com/theworker02/receipt-md) · **Release 1.00:** [`v1.0.0`](https://github.com/theworker02/receipt-md/releases/tag/v1.0.0)
 
 ## Why it exists
 
