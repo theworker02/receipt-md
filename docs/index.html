@@ -3,124 +3,66 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>receipt-md  · 1.00</title>
+  <title>receipt-md · JSR</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <nav class="nav sans">
     <a class="brand-lockup" href="index.html"><img src="logo.svg" alt=""> receipt-md</a>
     <div class="links">
-      <a href="index.html#overview">Overview</a>
-      <a href="index.html#install">Install</a>
-      <a href="usage.html">Usage</a>
-      <a href="index.html#examples">Examples</a>
+      <a href="#overview">Overview</a>
+      <a href="#api">API</a>
+      <a href="usage.html">CLI</a>
+      <a href="https://jsr.io/@theworker02/receipt-md">JSR</a>
       <a href="https://github.com/theworker02/receipt-md">GitHub</a>
-      <a href="https://www.npmjs.com/package/%40magnexis/receipt-md">npm</a>
-      <a href="https://github.com/theworker02/receipt-md/releases/tag/v1.0.0">1.00</a>
     </div>
   </nav>
-  
+
   <header class="hero">
     <img src="logo.svg" alt="receipt-md mark">
     <div>
-      <p class="kicker sans">theworker02 · version 1.00</p>
+      <p class="kicker sans">theworker02 · JSR package</p>
       <h1>receipt-md</h1>
-      <p class="lede">Write a markdown receipt with a title, ISO timestamp, and PASS or FAIL from argv.</p>
+      <p class="lede">Generate durable PASS/FAIL markdown receipts with optional JSON sidecars.</p>
       <div class="badges sans">
-        <span class="badge">1.00 / 1.0.0</span>
-        <span class="badge">branch main</span>
+        <span class="badge">JSR @theworker02/receipt-md</span>
+        <span class="badge">ESM</span>
         <span class="badge">MIT</span>
-        <span class="badge">Node.js >= 18</span>
+        <span class="badge">Node.js CLI ≥ 18</span>
       </div>
     </div>
   </header>
+
   <div class="wrap">
     <section id="overview">
       <h2>Overview</h2>
-      <p>CI logs disappear. A RECEIPT.md in the workspace is a durable, human-readable proof of the last run.</p>
-      <p>Workshop graders, local CI wrappers, and anyone attaching a result file to an artifact folder.</p>
+      <p>receipt-md turns build, grading, and CI outcomes into small durable artifacts that are easy to inspect and archive.</p>
+      <p>Public distribution now lives on <a href="https://jsr.io/@theworker02/receipt-md"><code>@theworker02/receipt-md</code> on JSR</a>.</p>
     </section>
-    <section id="install">
-      <h2>Install</h2>
-      <p>Install globally from npm, or run with Node from a clone. There are no extra dependencies.</p>
-      <p>Package: <a href="https://www.npmjs.com/package/%40magnexis/receipt-md"><code>@magnexis/receipt-md</code></a></p>
-      <pre><code>npm i -g @magnexis/receipt-md
-receipt-md --help</code></pre>
-      <pre><code>receipt-md 1.00 (1.0.0)
 
-Usage:
-  receipt-md [options] &lt;title&gt; &lt;pass|fail&gt; [file]
-  receipt-md --title &lt;title&gt; --pass|--fail [--note text] [--out file]
+    <section id="api">
+      <h2>Package API</h2>
+      <pre><code>import { render } from "jsr:@theworker02/receipt-md";
 
-Write a markdown receipt:
-  # &lt;title&gt;
-  - timestamp: &lt;ISO&gt;
-  - result: PASS|FAIL
-  - note: ...   (optional, repeatable)
-
-Default file: ./RECEIPT.md
-Exit 0 on PASS, 1 on FAIL (the file is still written).
-
-Options:
-  -h, --help         Show this help and exit 0
-  -V, -v, --version  Print 1.0.0 and exit 0
-  --title &lt;text&gt;     Receipt title
-  --pass / --fail    Result (aliases: pass|ok|true|1 and fail|false|0)
-  --note &lt;text&gt;      Extra note line (repeatable)
-  --out &lt;file&gt;       Output markdown path
-  --json             Also write a JSON sidecar next to the markdown
-                     (and print JSON to stdout)
-
-Examples:
-  receipt-md "CI" pass
-  receipt-md --title e2e --fail --note "timeout" --out ./artifacts/RECEIPT.md
-  receipt-md "build" pass --json</code></pre>
+console.log(render({
+  title: "CI",
+  pass: true,
+  notes: ["tests passed"]
+}));</code></pre>
     </section>
-    <section id="usage">
-      <h2>Usage</h2>
-      <p>Synopsis: <code>receipt-md [options] &lt;title&gt; &lt;pass|fail&gt; [file]</code></p>
-      <p>See the <a href="usage.html">full CLI reference</a> for every flag, exit code, and example.</p>
-      <pre><code>receipt-md 1.00 (1.0.0)
 
-Usage:
-  receipt-md &lt;title&gt; &lt;pass|fail&gt; [file]
-  receipt-md --help
-  receipt-md --version
-
-Writes markdown:
-  # &lt;title&gt;
-  - timestamp: &lt;ISO&gt;
-  - result: PASS|FAIL
-
-Default file: ./RECEIPT.md
-Exit 0 on PASS, 1 on FAIL (file is still written).
-
-Options:
-  -h, --help       Show this help
-  -v, --version    Print 1.0.0
-
-Examples:
-  receipt-md "CI" pass
-  receipt-md "e2e" fail ./artifacts/RECEIPT.md</code></pre>
-    </section>
-    <section id="examples">
-      <h2>Examples</h2>
-      <div class="grid-2">
-        <div>
-          <h3 class="ok">Success</h3>
-          <p>Write a PASS receipt.</p><pre><code>receipt-md "CI" pass</code></pre><pre><code>/abs/RECEIPT.md</code></pre>
-        </div>
-        <div>
-          <h3 class="fail">Failure</h3>
-          <p>FAIL receipts are still written; the process exits 1.</p><pre><code>receipt-md --title e2e --fail --note timeout --out ./artifacts/RECEIPT.md</code></pre><pre><code>./artifacts/RECEIPT.md</code></pre><p>Exit code is 1.</p>
-        </div>
-      </div>
+    <section id="cli">
+      <h2>CLI</h2>
+      <pre><code>git clone https://github.com/theworker02/receipt-md.git
+cd receipt-md
+node src/cli.js "CI" pass</code></pre>
+      <p>See the <a href="usage.html">full CLI reference</a>.</p>
     </section>
   </div>
+
   <footer class="sans">
-    MIT © 2026 theworker02 · version <strong>1.00</strong> (<code>1.0.0</code>) ·
-    navy <code>#0B1F33</code> · gold <code>#C9A227</code> ·
-    <a href="https://www.npmjs.com/package/%40magnexis/receipt-md">npm</a> ·
+    MIT © 2026 theworker02 ·
+    <a href="https://jsr.io/@theworker02/receipt-md">JSR</a> ·
     <a href="https://github.com/theworker02/receipt-md">GitHub</a> ·
     <a href="https://thanks.dev/u/gh/theworker02">thanks.dev</a>
   </footer>
