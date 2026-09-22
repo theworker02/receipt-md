@@ -17,14 +17,14 @@ This project is **proprietary**. Production use, redistribution, and commercial 
 ![license MIT](https://img.shields.io/badge/license-MIT-0B1F33)
 ![node >=18](https://img.shields.io/badge/node-%3E%3D18-C9A227?labelColor=0B1F33)
 
-**JSR:** [`@theworker02/receipt-md`](https://jsr.io/@theworker02/receipt-md) Â· **Docs:** [GitHub Pages](https://theworker02.github.io/receipt-md/) Â· **Source:** [`theworker02/receipt-md`](https://github.com/theworker02/receipt-md)
+**JSR:** [`@theworker02/receipt-md`](https://jsr.io/@theworker02/receipt-md) Ã‚Â· **Docs:** [GitHub Pages](https://theworker02.github.io/receipt-md/) Ã‚Â· **Source:** [`theworker02/receipt-md`](https://github.com/theworker02/receipt-md)
 
 ## Package API
 
 The JSR package exposes a documented ESM API for creating build and CI receipts programmatically.
 
-- `render()` â€” build markdown receipt content
-- `writeReceipt()` â€” write markdown and optional JSON sidecar files
+- `render()` Ã¢â‚¬â€ build markdown receipt content
+- `writeReceipt()` Ã¢â‚¬â€ write markdown and optional JSON sidecar files
 - documented result and options types for editor/JSR symbol documentation
 
 ```ts
@@ -78,9 +78,13 @@ See [SECURITY.md](SECURITY.md). Please report vulnerabilities privately.
 
 ## License
 
-[MIT](LICENSE) Â© 2026 theworker02
+[MIT](LICENSE) Ã‚Â© 2026 theworker02
 
 ## Funding
 
 - GitHub Sponsors: [theworker02](https://github.com/sponsors/theworker02)
 - thanks.dev: [https://thanks.dev/u/gh/theworker02](https://thanks.dev/u/gh/theworker02)
+
+## Status
+
+receipt-md is actively packaged for commercial licensing and acquisition diligence. See [ACQUISITION.md](./ACQUISITION.md) and [docs/acquisition/](./docs/acquisition/).
