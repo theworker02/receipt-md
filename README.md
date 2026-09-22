@@ -14,17 +14,29 @@ This project is **proprietary**. Production use, redistribution, and commercial 
 
 [![JSR](https://jsr.io/badges/@theworker02/receipt-md)](https://jsr.io/@theworker02/receipt-md)
 ![branch main](https://img.shields.io/badge/branch-main-0B1F33?labelColor=C9A227)
-![license MIT](https://img.shields.io/badge/license-MIT-0B1F33)
+![license proprietary](https://img.shields.io/badge/license-Proprietary%20(source--available)-0B1F33)
 ![node >=18](https://img.shields.io/badge/node-%3E%3D18-C9A227?labelColor=0B1F33)
 
-**JSR:** [`@theworker02/receipt-md`](https://jsr.io/@theworker02/receipt-md) Ã‚Â· **Docs:** [GitHub Pages](https://theworker02.github.io/receipt-md/) Ã‚Â· **Source:** [`theworker02/receipt-md`](https://github.com/theworker02/receipt-md)
+**JSR:** [`@theworker02/receipt-md`](https://jsr.io/@theworker02/receipt-md)  ·  **Docs:** [GitHub Pages](https://theworker02.github.io/receipt-md/)  ·  **Source:** [`theworker02/receipt-md`](https://github.com/theworker02/receipt-md)
+
+## Purpose
+
+Write durable PASS/FAIL Markdown receipts (and optional JSON sidecars) for builds, CI jobs, and manual checkpoints. Gives pipelines a human-readable artifact without adopting a full test report format.
+
+## Highlights
+
+- CLI and JSR API share the same receipt shape (title, timestamp, result, notes).
+- Exit code mirrors pass/fail for shell composition.
+- Optional `--json` sidecar next to the Markdown file.
+- Node 18+ CLI; ESM package published on JSR.
+
 
 ## Package API
 
 The JSR package exposes a documented ESM API for creating build and CI receipts programmatically.
 
-- `render()` Ã¢â‚¬â€ build markdown receipt content
-- `writeReceipt()` Ã¢â‚¬â€ write markdown and optional JSON sidecar files
+- `render()` — build markdown receipt content
+- `writeReceipt()` — write markdown and optional JSON sidecar files
 - documented result and options types for editor/JSR symbol documentation
 
 ```ts
@@ -76,9 +88,38 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Open pull requests against `main`.
 
 See [SECURITY.md](SECURITY.md). Please report vulnerabilities privately.
 
+
+
+## CLI examples
+
+Run from a cloned repository (Node 18+):
+
+```bash
+git clone https://github.com/theworker02/receipt-md.git
+cd receipt-md
+node src/cli.js "CI" pass
+node src/cli.js --title e2e --fail --note "timeout" --out ./artifacts/RECEIPT.md
+node src/cli.js "build" pass --json
+```
+
+See `node src/cli.js --help` for flags and exit codes.
+
+## Limitations
+
+- Receipt schema is intentionally minimal; it is not JUnit, SARIF, or OpenTelemetry.
+- Timestamps use ISO-8601 at write time; there is no backdating or signing.
+- The CLI writes local files only; upload/sync is the caller's responsibility.
+
+## Documentation
+
+- [JSR package and generated API docs](https://jsr.io/@theworker02/receipt-md)
+- [Project site](https://theworker02.github.io/receipt-md/)
+- [Source repository](https://github.com/theworker02/receipt-md)
+
 ## License
 
-[MIT](LICENSE) Ã‚Â© 2026 theworker02
+**Source-available proprietary** — evaluation under [LICENSE](./LICENSE); commercial / production use via [COMMERCIAL.md](./COMMERCIAL.md). See [LICENSE_TRANSITION_NOTICE.md](./LICENSE_TRANSITION_NOTICE.md) and [NOTICE](./NOTICE).
+
 
 ## Funding
 
@@ -88,3 +129,4 @@ See [SECURITY.md](SECURITY.md). Please report vulnerabilities privately.
 ## Status
 
 receipt-md is actively packaged for commercial licensing and acquisition diligence. See [ACQUISITION.md](./ACQUISITION.md) and [docs/acquisition/](./docs/acquisition/).
+
